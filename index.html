@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Big Clo</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <nav class="nav-container" aria-label="Main navigation">
+        <a class="brand" href="#">Big Clo</a>
+        <div class="nav-right">
+          <!-- navigation list — semantic + accessible -->
+          <ul class="nav-list">
+            <li><a href="#clock">Clock</a></li>
+            <li><a href="#weather">Weather</a></li>
+            <li><a href="#tasks">Tasks</a></li>
+            <li><a href="#quote">Quote</a></li>
+          </ul>
+        </div>
+        <!-- theme toggle (JS hook) -->
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-pressed="false"
+          aria-label="Toggle theme"
+        >
+          Toggle
+        </button>
+      </nav>
+    </header>
+    <!--media to be fixed with everything-->
+    <main class="container">
+      <!-- CLOCK WIDGET -->
+      <section id="clock" class="widget-clock" aria-labelledby="clock-title">
+        <header>
+          <h2 id="clock-title"><strong>Clock</strong></h2>
+        </header>
+        <div class="widget-body">
+          <!-- display area for JS to update -->
+          <div id="time-display" class="time-display" aria-live="polite">
+            --:--:--
+          </div>
+          <div id="date-display" class="date-display" aria-hidden="false">
+            Loading date…
+          </div>
+        </div>
+      </section>
+
+      <!-- WEATHER WIDGET -->
+      <section
+        id="weather"
+        class="widget-weather"
+        aria-labelledby="weather-title"
+      >
+        <header>
+          <h2 id="weather-title">Weather</h2>
+        </header>
+
+        <div class="widget-body">
+          <!-- search + controls -->
+          <form id="weather-form" class="weather-form" role="search">
+            <input
+              id="weather-city"
+              name="city"
+              type="search"
+              placeholder="Enter city"
+            />
+            <button id="sub" type="submit">Get</button>
+          </form>
+
+          <!-- results area — updated by JS -->
+          <div
+            id="weather-result"
+            class="weather-result"
+            aria-live="polite"
+            hidden
+          >
+            <p class="weather-location"></p>
+            <p class="weather-temp"></p>
+            <p class="weather-desc"></p>
+          </div>
+
+          <!-- error / loading slots -->
+          <div id="weather-loading" class="sr-only" aria-hidden="true">
+            Loading…
+          </div>
+          <div id="weather-error" class="error" role="alert" hidden></div>
+        </div>
+      </section>
+
+      <!-- TODO / TASKS WIDGET -->
+      <section id="tasks" class="widget-tasks" aria-labelledby="tasks-title">
+        <header>
+          <h2 id="tasks-title">Today's Tasks</h2>
+        </header>
+
+        <div class="widget-body">
+          <!-- add task form -->
+          <form id="task-form" class="task-form" aria-label="Add a new task">
+            <input
+              id="task-input"
+              name="task"
+              type="text"
+              placeholder="Add a task…"
+              required
+            />
+            <button type="submit">Add</button>
+          </form>
+
+          <!-- tasks list — initially empty, filled by JS / localStorage -->
+          <ul id="task-list" class="task-list" aria-live="polite">
+            <!-- <li data-id="..."><label><input type="checkbox"> Task text</label> <button class="delete">×</button></li> -->
+          </ul>
+
+          <!-- simple controls -->
+          <div class="task-controls">
+            <button id="clear-completed" type="button">Clear completed</button>
+            <button id="clear-all" type="button">Clear all</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUOTE WIDGET -->
+      <section id="quote" class="widget-quote" aria-labelledby="quote-title">
+        <header>
+          <h2 id="quote-title">Quote of the Day</h2>
+        </header>
+
+        <div class="widget-body">
+          <blockquote
+            id="quote-text"
+            class="quote-text"
+            cite=""
+            aria-live="polite"
+          >
+            Loading quote…
+          </blockquote>
+          <p id="quote-author" class="quote-author"></p>
+          <button id="new-quote" type="button">New Quote</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Big Clo. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="js/script.js" defer></script>
+    <!-- later: link JS file -->
+  </body>
+</html>
